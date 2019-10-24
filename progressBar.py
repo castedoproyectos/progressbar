@@ -16,7 +16,7 @@ def clearConsole():
 
 class ProgressBar:
 
-    def __init__(self, tam, length):
+    def __init__(self, tam, length=50):
         self.q = Queue()
         self.qin = Queue()
         self.p = Process(target=ProgressBarInside, args=(tam, length, self.q, self.qin))
@@ -38,7 +38,7 @@ class ProgressBar:
 
 
 if __name__ == '__main__':
-    h = ProgressBar(49, 100)
+    h = ProgressBar(49, 50)
     for i in range(1,50):
         time.sleep(0.1)
         h.step()
