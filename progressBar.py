@@ -1,18 +1,6 @@
 import time
 from multiprocessing import Process, Queue
-from os import system, name
-
 from progressBarInside import ProgressBarInside
-
-
-def clearConsole():
-    # for windows
-    if name == 'nt':
-        _ = system('cls')
-        # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
-
 
 class ProgressBar:
 
@@ -32,13 +20,12 @@ class ProgressBar:
         while self.qin.empty():
             pass
 
-        clearConsole()
         data = self.qin.get()
         print(data)
-
+        print(data, end="\r")
 
 if __name__ == '__main__':
     h = ProgressBar(49, 50)
-    for i in range(1,50):
-        time.sleep(0.1)
+    for i in range(1, 50):
+        time.sleep(0.2)
         h.step()
